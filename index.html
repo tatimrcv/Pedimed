@@ -4,68 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PediMed UP — Guia de Administração & CIAV</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome para ícones clínicos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         clinical: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            200: '#bae0fd',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                            950: '#082f49',
+                            50: '#f0f7ff', 100: '#e0effe', 200: '#bae0fd',
+                            600: '#0284c7', 700: '#0369a1', 800: '#075985',
+                            900: '#0c4a6e', 950: '#082f49'
                         }
                     }
                 }
             }
-        }
+        };
     </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f7fa;
-            color: #0f172a;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .details-enter {
-            animation: slideDown 0.2s ease-out forwards;
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #f4f7fa; color: #0f172a; -webkit-tap-highlight-color: transparent; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .details-enter { animation: slideDown 0.2s ease-out forwards; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="min-h-screen flex flex-col pb-12">
 
-    <!-- CABEÇALHO FIXO DE URGÊNCIA -->
     <header class="sticky top-0 z-40 bg-clinical-900 text-white shadow-md">
         <div class="max-w-4xl mx-auto px-3 sm:px-6 py-3">
             <div class="flex items-center justify-between gap-2">
-                <!-- Identidade da App -->
                 <div class="flex items-center gap-2.5">
                     <div class="bg-clinical-600 p-2 rounded-xl shadow-inner flex items-center justify-center">
                         <i class="fa-solid fa-staff-snake text-lg sm:text-xl text-white"></i>
@@ -78,8 +50,6 @@
                         <p class="text-[11px] sm:text-xs text-clinical-200 mt-0.5">Guia de Preparação, Administração & CIAV</p>
                     </div>
                 </div>
-
-                <!-- Botão Direto CIAV -->
                 <a href="tel:800250250" class="flex items-center gap-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold text-xs sm:text-sm px-3 py-2.5 rounded-xl shadow-sm transition-all shrink-0 border border-red-400/40">
                     <i class="fa-solid fa-phone-volume animate-pulse"></i>
                     <div class="text-left leading-tight">
@@ -89,23 +59,19 @@
                 </a>
             </div>
         </div>
-
-        <!-- Faixa de Aviso Clínico -->
         <div class="bg-clinical-950/80 border-t border-clinical-800 px-3 py-1.5 text-center">
             <p class="text-[11px] text-clinical-200 max-w-4xl mx-auto flex items-center justify-center gap-1.5">
                 <i class="fa-solid fa-circle-info text-amber-400"></i>
                 <span>Ferramenta de apoio de enfermagem baseada no protocolo interno. Não substitui a prescrição médica nem o contacto com o CIAV.</span>
             </p>
         </div>
-
-        <!-- NAVEGAÇÃO PRINCIPAL (2 ABAS) -->
         <nav class="bg-white border-b border-slate-200 text-slate-700">
             <div class="max-w-4xl mx-auto grid grid-cols-2">
-                <button id="tab-meds" onclick="switchMainTab('meds')" class="py-3 px-2 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border-b-2 border-clinical-600 text-clinical-700 bg-clinical-50/50 transition-colors">
+                <button type="button" id="tab-meds" onclick="switchMainTab('meds')" class="py-3 px-2 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border-b-2 border-clinical-600 text-clinical-700 bg-clinical-50/50 transition-colors">
                     <i class="fa-solid fa-syringe"></i>
                     <span>Medicamentos & Cálculo</span>
                 </button>
-                <button id="tab-ciav" onclick="switchMainTab('ciav')" class="py-3 px-2 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-colors">
+                <button type="button" id="tab-ciav" onclick="switchMainTab('ciav')" class="py-3 px-2 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-colors">
                     <i class="fa-solid fa-skull-crossbones text-red-600"></i>
                     <span>Intoxicações (CIAV)</span>
                 </button>
@@ -113,7 +79,6 @@
         </nav>
     </header>
 
-    <!-- PAINEL TRANSVERSAL DE DADOS DO DOENTE (PESO E IDADE) -->
     <section class="bg-white border-b border-slate-200 shadow-sm">
         <div class="max-w-4xl mx-auto px-3 sm:px-6 py-3">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
@@ -121,13 +86,11 @@
                     <i class="fa-solid fa-child-reaching text-clinical-600"></i>
                     Dados da Criança (Cálculo Automático)
                 </span>
-                <button id="btn-clear-patient" onclick="clearPatientData()" class="hidden text-xs font-semibold text-slate-400 hover:text-red-600 transition-colors">
+                <button type="button" id="btn-clear-patient" onclick="clearPatientData()" class="hidden text-xs font-semibold text-slate-400 hover:text-red-600 transition-colors">
                     <i class="fa-solid fa-rotate-left mr-1"></i>Limpar dados
                 </button>
             </div>
-
             <div class="grid grid-cols-12 gap-2.5">
-                <!-- Campo Peso -->
                 <div class="col-span-6 sm:col-span-5">
                     <label for="patient-weight" class="block text-[11px] font-semibold text-slate-600 mb-1">Peso (kg)</label>
                     <div class="relative">
@@ -136,8 +99,6 @@
                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">kg</span>
                     </div>
                 </div>
-
-                <!-- Campo Idade -->
                 <div class="col-span-6 sm:col-span-7">
                     <label for="patient-age" class="block text-[11px] font-semibold text-slate-600 mb-1">Idade</label>
                     <div class="flex gap-1.5">
@@ -151,8 +112,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Alerta de Segurança de Peso/Idade -->
             <div id="patient-alert" class="hidden mt-2.5 p-2.5 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs flex items-start gap-2">
                 <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i>
                 <span id="patient-alert-text"></span>
@@ -160,62 +119,34 @@
         </div>
     </section>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <main class="flex-1 max-w-4xl w-full mx-auto px-3 sm:px-6 pt-4">
-
-        <!-- ========================================================= -->
-        <!-- ABA 1: MEDICAMENTOS & CÁLCULO                             -->
-        <!-- ========================================================= -->
         <div id="view-meds" class="space-y-4">
-            
-            <!-- Barra de Pesquisa e Filtros por Via -->
             <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-200 space-y-3">
-                <!-- Pesquisa -->
                 <div class="relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
                     <input type="text" id="med-search" placeholder="Pesquisar princípio ativo ou marca (ex: Keppra, Zofran, Rocephin)..." oninput="renderMeds()"
                         class="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-clinical-600 focus:bg-white">
-                    <button id="clear-med-search" onclick="document.getElementById('med-search').value=''; renderMeds();" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                    <button type="button" id="clear-med-search" onclick="document.getElementById('med-search').value=''; renderMeds();" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
-
-                <!-- Filtros de Via de Administração + Botão Sincronizar -->
                 <div class="flex items-center justify-between gap-2">
                     <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
                         <span class="text-[11px] font-bold text-slate-400 uppercase mr-1 shrink-0">Via:</span>
-                        <button onclick="setRouteFilter('ALL')" data-route="ALL" class="route-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-clinical-700 text-white shrink-0 transition-colors">
-                            Todas
-                        </button>
-                        <button onclick="setRouteFilter('IV_PERFUSAO')" data-route="IV_PERFUSAO" class="route-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 shrink-0 transition-colors">
-                            I.V. Perfusão
-                        </button>
-                        <button onclick="setRouteFilter('IV_LENTA')" data-route="IV_LENTA" class="route-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 shrink-0 transition-colors">
-                            I.V. Direta / Lenta
-                        </button>
-                        <button onclick="setRouteFilter('IM')" data-route="IM" class="route-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 shrink-0 transition-colors">
-                            I.M.
-                        </button>
+                        <button type="button" onclick="setRouteFilter('ALL')" data-route="ALL" class="route-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-clinical-700 text-white shrink-0 transition-colors">Todas</button>
+                        <button type="button" onclick="setRouteFilter('IV_PERFUSAO')" data-route="IV_PERFUSAO" class="route-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 shrink-0 transition-colors">I.V. Perfusão</button>
+                        <button type="button" onclick="setRouteFilter('IV_LENTA')" data-route="IV_LENTA" class="route-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 shrink-0 transition-colors">I.V. Direta / Lenta</button>
+                        <button type="button" onclick="setRouteFilter('IM')" data-route="IM" class="route-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 shrink-0 transition-colors">I.M.</button>
                     </div>
-
-                    <button onclick="loadMedicationsFromGoogleSheets(true)" title="Atualizar dados do Google Sheets" class="text-xs font-bold text-clinical-700 hover:text-clinical-900 bg-clinical-50 hover:bg-clinical-100 border border-clinical-200 px-2.5 py-1.5 rounded-lg shrink-0 transition-colors">
+                    <button type="button" onclick="loadMedicationsFromGoogleSheets(true)" title="Atualizar dados do Google Sheets" class="text-xs font-bold text-clinical-700 hover:text-clinical-900 bg-clinical-50 hover:bg-clinical-100 border border-clinical-200 px-2.5 py-1.5 rounded-lg shrink-0 transition-colors">
                         <i class="fa-solid fa-arrows-rotate mr-1"></i><span class="hidden sm:inline">Sincronizar</span>
                     </button>
                 </div>
             </div>
-
-            <!-- Lista de Medicamentos -->
-            <div id="meds-container" class="space-y-3.5">
-                <!-- Renderizado dinamicamente via Google Sheets -->
-            </div>
+            <div id="meds-container" class="space-y-3.5"></div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- ABA 2: INTOXICAÇÕES (CIAV)                                -->
-        <!-- ========================================================= -->
         <div id="view-ciav" class="hidden space-y-4">
-            
-            <!-- Simulador / Avaliador Interativo de Exposição e Gravidade -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="bg-slate-900 text-white px-4 py-3 flex items-center justify-between gap-2">
                     <div class="flex items-center gap-2">
@@ -225,18 +156,15 @@
                             <p class="text-[11px] text-slate-300">Sincronizado com o peso e idade da criança no topo</p>
                         </div>
                     </div>
-                    <button onclick="loadParacetamolExample()" class="text-[11px] font-bold bg-slate-800 hover:bg-slate-700 text-clinical-200 px-2.5 py-1.5 rounded-lg border border-slate-700 transition-colors shrink-0">
+                    <button type="button" onclick="loadParacetamolExample()" class="text-[11px] font-bold bg-slate-800 hover:bg-slate-700 text-clinical-200 px-2.5 py-1.5 rounded-lg border border-slate-700 transition-colors shrink-0">
                         <i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Exemplo 25kg
                     </button>
                 </div>
-
                 <div class="p-4 space-y-3.5">
                     <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
-                        <!-- Agente / Produto -->
                         <div class="sm:col-span-5">
                             <label for="ciav-toxin-select" class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Medicamento / Produto</label>
-                            <select id="ciav-toxin-select" onchange="handleCiavInputChange()"
-                                class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 focus:bg-white">
+                            <select id="ciav-toxin-select" onchange="handleCiavInputChange()" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 focus:bg-white">
                                 <option value="paracetamol">Paracetamol</option>
                                 <option value="ibuprofeno">Ibuprofeno (AINEs)</option>
                                 <option value="ferro">Ferro Elementar (Suplementos)</option>
@@ -244,26 +172,19 @@
                                 <option value="lixivia">Lixívia Doméstica / Cáustico Ligeiro</option>
                             </select>
                         </div>
-
-                        <!-- Quantidade Ingerida / Exposta -->
                         <div class="sm:col-span-4">
                             <label for="ciav-amount" class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Quantidade Total</label>
                             <div class="flex gap-1.5">
-                                <input type="number" id="ciav-amount" step="any" min="0" placeholder="Ex: 750" oninput="handleCiavInputChange()"
-                                    class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 focus:bg-white">
-                                <select id="ciav-unit" onchange="handleCiavInputChange()"
-                                    class="bg-slate-100 border border-slate-300 rounded-xl px-2.5 py-2 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-red-600">
+                                <input type="number" id="ciav-amount" step="any" min="0" placeholder="Ex: 750" oninput="handleCiavInputChange()" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 focus:bg-white">
+                                <select id="ciav-unit" onchange="handleCiavInputChange()" class="bg-slate-100 border border-slate-300 rounded-xl px-2.5 py-2 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-red-600">
                                     <option value="mg">mg</option>
                                     <option value="ml">mL</option>
                                 </select>
                             </div>
                         </div>
-
-                        <!-- Via de Exposição -->
                         <div class="sm:col-span-3">
                             <label for="ciav-route" class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Via de Exposição</label>
-                            <select id="ciav-route" onchange="handleCiavInputChange()"
-                                class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 focus:bg-white">
+                            <select id="ciav-route" onchange="handleCiavInputChange()" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 focus:bg-white">
                                 <option value="oral">Via Oral</option>
                                 <option value="inalacao">Inalação</option>
                                 <option value="cutanea">Cutânea</option>
@@ -271,80 +192,45 @@
                             </select>
                         </div>
                     </div>
-
-                    <!-- Resultado Dinâmico da Estratificação de Gravidade -->
-                    <div id="ciav-evaluation-result">
-                        <!-- Renderizado via JS -->
-                    </div>
+                    <div id="ciav-evaluation-result"></div>
                 </div>
             </div>
 
-            <!-- Checklist rápida antes de ligar -->
             <details class="bg-red-50/80 border border-red-200 rounded-2xl p-3.5 shadow-sm">
                 <summary class="text-xs font-extrabold uppercase tracking-wider text-red-900 cursor-pointer flex items-center justify-between">
                     <span><i class="fa-solid fa-list-check mr-1.5"></i>Checklist CIAV (800 250 250) — Dados a reunir antes de telefonar</span>
                     <i class="fa-solid fa-chevron-down text-red-700"></i>
                 </summary>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs mt-3 pt-2.5 border-t border-red-200/70">
-                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer">
-                        <input type="checkbox" class="rounded text-red-600 focus:ring-red-500">
-                        <span class="font-medium text-slate-800"><strong>Quem:</strong> Idade e Peso</span>
-                    </label>
-                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer">
-                        <input type="checkbox" class="rounded text-red-600 focus:ring-red-500">
-                        <span class="font-medium text-slate-800"><strong>O quê:</strong> Nome/Composição</span>
-                    </label>
-                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer">
-                        <input type="checkbox" class="rounded text-red-600 focus:ring-red-500">
-                        <span class="font-medium text-slate-800"><strong>Quanto:</strong> Dose máx. possível</span>
-                    </label>
-                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer">
-                        <input type="checkbox" class="rounded text-red-600 focus:ring-red-500">
-                        <span class="font-medium text-slate-800"><strong>Quando:</strong> Hora da exposição</span>
-                    </label>
-                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer">
-                        <input type="checkbox" class="rounded text-red-600 focus:ring-red-500">
-                        <span class="font-medium text-slate-800"><strong>Como:</strong> Oral, cutânea, inalada</span>
-                    </label>
-                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer">
-                        <input type="checkbox" class="rounded text-red-600 focus:ring-red-500">
-                        <span class="font-medium text-slate-800"><strong>Estado:</strong> Sintomas atuais</span>
-                    </label>
+                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer"><input type="checkbox" class="rounded text-red-600"><span class="font-medium text-slate-800"><strong>Quem:</strong> Idade e Peso</span></label>
+                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer"><input type="checkbox" class="rounded text-red-600"><span class="font-medium text-slate-800"><strong>O quê:</strong> Nome/Composição</span></label>
+                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer"><input type="checkbox" class="rounded text-red-600"><span class="font-medium text-slate-800"><strong>Quanto:</strong> Dose máx. possível</span></label>
+                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer"><input type="checkbox" class="rounded text-red-600"><span class="font-medium text-slate-800"><strong>Quando:</strong> Hora da exposição</span></label>
+                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer"><input type="checkbox" class="rounded text-red-600"><span class="font-medium text-slate-800"><strong>Como:</strong> Oral, cutânea, inalada</span></label>
+                    <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-red-200/60 cursor-pointer"><input type="checkbox" class="rounded text-red-600"><span class="font-medium text-slate-800"><strong>Estado:</strong> Sintomas atuais</span></label>
                 </div>
             </details>
 
-            <!-- Fichas de Consulta Rápida de Tóxicos -->
             <div class="space-y-2.5">
                 <div class="flex items-center justify-between gap-2 px-1">
                     <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Fichas de Referência Rápida</h3>
-                    <input type="text" id="toxin-search" placeholder="Filtrar ficha..." oninput="renderToxins()"
-                        class="w-44 sm:w-56 px-3 py-1.5 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-600">
+                    <input type="text" id="toxin-search" placeholder="Filtrar ficha..." oninput="renderToxins()" class="w-44 sm:w-56 px-3 py-1.5 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-600">
                 </div>
-                <div id="toxins-container" class="space-y-3.5">
-                    <!-- Renderizado dinamicamente via JS -->
-                </div>
+                <div id="toxins-container" class="space-y-3.5"></div>
             </div>
         </div>
-
     </main>
 
-    <!-- RODAPÉ DISCRETO COM AVISO CLÍNICO -->
     <footer class="max-w-4xl w-full mx-auto px-3 sm:px-6 pt-6 mt-auto">
         <div class="border-t border-slate-200 pt-3 text-center text-[11px] text-slate-500">
             <p><strong>PediMed UP</strong> — Ferramenta de apoio à preparação e vigilância de enfermagem em urgência pediátrica. Não substitui o julgamento clínico, a prescrição médica nem o contacto com o CIAV (800 250 250).</p>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT DA APLICAÇÃO -->
     <script>
-        // =========================================================================
-        // LIGAÇÃO AO GOOGLE SHEETS (CSV PUBLICADO NA WEB)
-        // =========================================================================
         const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRzNiDlnj79MLz5ZM_sYxfDLSOqKE7fxGGchjy7Dbp2NcneeV7BieedStx-c2Np3V-ebiQeNJT9i8QG/pub?gid=0&single=true&output=csv";
-
         let MEDICATIONS = [];
 
-        // Parser robusto de CSV (suporta vírgulas e quebras de linha dentro de aspas)
         function parseCSV(text) {
             const rows = [];
             let currentRow = [];
@@ -354,31 +240,20 @@
             for (let i = 0; i < text.length; i++) {
                 const char = text[i];
                 const nextChar = text[i + 1];
-
                 if (inQuotes) {
-                    if (char === '"' && nextChar === '"') {
-                        currentVal += '"';
-                        i++;
-                    } else if (char === '"') {
-                        inQuotes = false;
-                    } else {
-                        currentVal += char;
-                    }
+                    if (char === '"' && nextChar === '"') { currentVal += '"'; i++; }
+                    else if (char === '"') { inQuotes = false; }
+                    else { currentVal += char; }
                 } else {
-                    if (char === '"') {
-                        inQuotes = true;
-                    } else if (char === ',') {
-                        currentRow.push(currentVal.trim());
-                        currentVal = '';
-                    } else if (char === '\n' || (char === '\r' && nextChar === '\n')) {
+                    if (char === '"') { inQuotes = true; }
+                    else if (char === ',') { currentRow.push(currentVal.trim()); currentVal = ''; }
+                    else if (char === '\n' || (char === '\r' && nextChar === '\n')) {
                         currentRow.push(currentVal.trim());
                         if (currentRow.some(cell => cell !== '')) rows.push(currentRow);
                         currentRow = [];
                         currentVal = '';
                         if (char === '\r') i++;
-                    } else {
-                        currentVal += char;
-                    }
+                    } else { currentVal += char; }
                 }
             }
             if (currentVal !== '' || currentRow.length > 0) {
@@ -388,12 +263,9 @@
             return rows;
         }
 
-        // Extrai concentração em mg/ml a partir do texto (ex: "200mg/ml", "25mg/5ml", "80mg/2ml")
         function extractConcentrationMgMl(concText) {
             if (!concText) return null;
             const clean = concText.toLowerCase().replace(',', '.');
-
-            // Formato "X mg / Y ml" (ex: 25mg/5ml -> 5 mg/ml; 200mg/ml -> 200 mg/ml)
             const mgPerMlMatch = clean.match(/(\d+(?:\.\d+)?)\s*mg\s*\/\s*(\d+(?:\.\d+)?)?\s*ml/);
             if (mgPerMlMatch) {
                 const mg = parseFloat(mgPerMlMatch[1]);
@@ -403,29 +275,17 @@
             return null;
         }
 
-        // Deteta vias de administração a partir dos textos da linha
         function detectRoutes(fullText) {
             const t = fullText.toLowerCase();
             const routes = [];
             const badges = [];
-
-            if (t.includes('perfusão') || t.includes('perfusao')) {
-                routes.push('IV_PERFUSAO');
-                badges.push('I.V. Perfusão');
-            }
-            if (t.includes('i.v. direta') || t.includes('iv direta') || t.includes('bólus') || t.includes('bolus') || t.includes('lenta')) {
-                routes.push('IV_LENTA');
-                badges.push('I.V. Direta / Lenta');
-            }
-            if (t.includes('i.m.') || t.includes('im ') || t.includes('intramuscular')) {
-                routes.push('IM');
-                badges.push('I.M.');
-            }
+            if (t.includes('perfusão') || t.includes('perfusao')) { routes.push('IV_PERFUSAO'); badges.push('I.V. Perfusão'); }
+            if (t.includes('i.v. direta') || t.includes('iv direta') || t.includes('bólus') || t.includes('bolus') || t.includes('lenta')) { routes.push('IV_LENTA'); badges.push('I.V. Direta / Lenta'); }
+            if (t.includes('i.m.') || t.includes('im ') || t.includes('intramuscular')) { routes.push('IM'); badges.push('I.M.'); }
             if (badges.length === 0) badges.push('Parentérica');
             return { routes, badges };
         }
 
-        // Converte cada linha do Google Sheets no objeto de medicamento da app
         function mapSheetRowToMedication(row, index) {
             const [nome, marca, concentracao, reconstituicao, diluicao, tempoAdmin, estabilidade, observacoes] = row;
             const id = `med-${index}-${(nome || '').toLowerCase().replace(/[^a-z0-9]/g, '')}`;
@@ -434,7 +294,6 @@
             const combinedText = `${reconstituicao || ''} ${diluicao || ''} ${tempoAdmin || ''}`;
             const { routes, badges } = detectRoutes(combinedText);
 
-            // Deteta alertas críticos (ex: "Nunca administrar...", "Não administrar...")
             let criticalAlert = null;
             if (observacoes && /nunca|não administrar|proibido|paragem cardíaca|necrose|incompatível/i.test(observacoes)) {
                 criticalAlert = observacoes;
@@ -450,19 +309,12 @@
                 routeBadges: badges,
                 criticalAlert,
                 reconstitution: reconstituicao || 'Não especificado.',
-                dilutionAndAdmin: [
-                    {
-                        via: badges.join(' / '),
-                        text: diluicao || 'Ver protocolo.',
-                        warning: tempoAdmin ? `Tempo / Velocidade: ${tempoAdmin}` : null
-                    }
-                ],
-                stability: [
-                    {
-                        label: 'Estabilidade',
-                        text: estabilidade || 'Não especificado no guia.'
-                    }
-                ],
+                dilutionAndAdmin: [{
+                    via: badges.join(' / '),
+                    text: diluicao || 'Ver protocolo.',
+                    warning: tempoAdmin ? `Tempo / Velocidade: ${tempoAdmin}` : null
+                }],
+                stability: [{ label: 'Estabilidade', text: estabilidade || 'Não especificado no guia.' }],
                 observations: observacoes ? [observacoes] : ['Sem observações adicionais.'],
                 sideEffects: [
                     'Vigiar local de punção (flebite, dor ou extravasamento).',
@@ -470,14 +322,12 @@
                 ],
                 adminHelper: {
                     referenceNote: `Apresentação: ${concentracao || '—'}${concMgMl ? ` (${concMgMl} mg/ml)` : ''}. Validar dose prescrita pelo médico.`,
-                    evaluatePrescription: (doseMg, weightKg) => {
-                        return {
-                            dilutionText: diluicao || 'Conforme protocolo do serviço',
-                            timeText: tempoAdmin || 'Conforme protocolo',
-                            extraAdminNote: reconstituicao ? `Reconstituição: ${reconstituicao}` : '',
-                            safetyAlert: criticalAlert
-                        };
-                    }
+                    evaluatePrescription: () => ({
+                        dilutionText: diluicao || 'Conforme protocolo do serviço',
+                        timeText: tempoAdmin || 'Conforme protocolo',
+                        extraAdminNote: reconstituicao ? `Reconstituição: ${reconstituicao}` : '',
+                        safetyAlert: criticalAlert
+                    })
                 }
             };
         }
@@ -490,16 +340,13 @@
                     <p class="text-xs font-bold text-slate-600">A carregar medicamentos da folha MedUP...</p>
                 </div>
             `;
-
             try {
-                // Adiciona parâmetro de cache-busting apenas se o utilizador clicar em Sincronizar
                 const url = forceRefresh ? `${GOOGLE_SHEET_CSV_URL}&_t=${Date.now()}` : GOOGLE_SHEET_CSV_URL;
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('Erro ao aceder ao Google Sheets');
+                if (!response.ok) throw new Error('Erro HTTP ' + response.status);
                 const csvText = await response.text();
                 const rows = parseCSV(csvText);
 
-                // Ignora a linha 1 (cabeçalhos: Nome, Marca, Concentração...)
                 MEDICATIONS = rows.slice(1)
                     .filter(r => r[0] && r[0].trim() !== '')
                     .map((row, idx) => mapSheetRowToMedication(row, idx));
@@ -518,9 +365,6 @@
             }
         }
 
-        // =========================================================================
-        // BASE DE DADOS TOXICOLÓGICA (ORIENTAÇÃO RÁPIDA CIAV & ESTRATIFICAÇÃO)
-        // =========================================================================
         const TOXINS = [
             {
                 id: 'paracetamol',
@@ -537,26 +381,489 @@
                 antidote: 'N-Acetilcisteína (NAC) I.V. — indicada se nível sérico acima da linha de tratamento no nomograma ou ingestão maciça.',
                 evaluate: (amount, unit, route, weightKg, ageVal, ageUnit) => {
                     if (route !== 'oral') {
-                        return {
-                            severity: 'MODERADO',
-                            dosePerKgText: `${amount} ${unit} (${route})`,
-                            ciavAdvice: 'Via de exposição atípica para paracetamol. Contactar o CIAV (800 250 250) para validação.',
-                            summary: 'Exposição não oral requer avaliação individualizada da formulação e local de contacto.',
-                            vigilance: ['Irritação local (ocular/cutânea) ou sintomas sistémicos consoante formulação.'],
-                            actions: ['Lavar abundantemente com soro fisiológico/água se contacto ocular ou cutâneo.']
-                        };
+                        return { severity: 'MODERADO', dosePerKgText: `${amount} ${unit} (${route})`, ciavAdvice: 'Via atípica. Contactar CIAV (800 250 250).', summary: 'Exposição não oral requer avaliação individualizada.', vigilance: ['Irritação local.'], actions: ['Lavar abundantemente com SF/água.'] };
                     }
                     if (unit === 'ml') {
-                        return {
-                            severity: 'MODERADO',
-                            dosePerKgText: `${amount} mL (converter para mg consoante concentração: ex. 24 mg/mL ou 40 mg/mL)`,
-                            ciavAdvice: 'Introduz a quantidade em mg (ex: 24 mg/mL × mL) para cálculo exato em mg/kg, ou contacta o CIAV se dúvida.',
-                            summary: 'Necessário confirmar a concentração exata do xarope/solução oral para calcular os mg/kg.',
-                            vigilance: ['Náuseas, vómitos, dor abdominal nas primeiras 24h.'],
-                            actions: ['Verificar embalagem (24 mg/mL = 120 mg/5 mL; 40 mg/mL = 200 mg/5 mL) e recalcular em mg.']
-                        };
+                        return { severity: 'MODERADO', dosePerKgText: `${amount} mL (converter para mg)`, ciavAdvice: 'Introduz a quantidade em mg (24 mg/mL ou 40 mg/mL) para cálculo em mg/kg.', summary: 'Confirmar concentração do xarope para calcular mg/kg.', vigilance: ['Náuseas, vómitos nas primeiras 24h.'], actions: ['Converter mL em mg e recalcular.'] };
                     }
                     if (!weightKg) {
-                        return {
-                            severity: 'INDETERMINADO',
-                            dose
+                        return { severity: 'INDETERMINADO', dosePerKgText: `${amount} mg (falta peso)`, ciavAdvice: 'Insere o peso (kg) no topo.', summary: 'Sem o peso não é possível calcular mg/kg.', vigilance: ['Náuseas, vómitos.'], actions: ['Pesar a criança.'] };
+                    }
+                    const mgKg = amount / weightKg;
+                    const ageYears = ageVal !== null ? (ageUnit === 'meses' ? ageVal / 12 : ageVal) : null;
+                    const acuteToxicLimit = (ageYears !== null && ageYears < 6) ? 200 : 150;
+                    if (mgKg <= 75) {
+                        return { severity: 'LIGEIRO', dosePerKgText: `${mgKg.toFixed(1)} mg/kg`, ciavAdvice: 'Sem necessidade de contacto urgente com CIAV (dose terapêutica), salvo tomas repetidas nas últimas 24h.', summary: `Dose de ${mgKg.toFixed(1)} mg/kg: abaixo do limiar tóxico (${acuteToxicLimit} mg/kg).`, vigilance: ['Habitualmente assintomático.'], actions: ['Registar hora da toma para evitar repetição nas próximas 6–8h.'] };
+                    } else if (mgKg < acuteToxicLimit) {
+                        return { severity: 'MODERADO', dosePerKgText: `${mgKg.toFixed(1)} mg/kg`, ciavAdvice: 'Contactar CIAV (800 250 250) para validação, sobretudo se tomas repetidas.', summary: `Dose supraterapêutica (${mgKg.toFixed(1)} mg/kg), abaixo de ${acuteToxicLimit} mg/kg.`, vigilance: ['Náuseas, vómitos, dor epigástrica.'], actions: ['Confirmar outras tomas nas últimas 24h e validar com médico/CIAV.'] };
+                    } else {
+                        return { severity: 'GRAVE', dosePerKgText: `${mgKg.toFixed(1)} mg/kg`, ciavAdvice: 'CONTACTAR IMEDIATAMENTE O CIAV (800 250 250) — Dose potencialmente hepatotóxica!', summary: `Dose ≥ ${acuteToxicLimit} mg/kg (${mgKg.toFixed(1)} mg/kg): risco elevado de hepatotoxicidade.`, vigilance: ['Náuseas, vómitos, palidez (0–24h); subida de AST/ALT e INR (24–72h).'], actions: ['Carvão ativado se < 1–2h e alerta.', 'Colheita às 4h pós-ingestão e preparar N-Acetilcisteína.'] };
+                    }
+                }
+            },
+            {
+                id: 'ibuprofeno',
+                name: 'Ibuprofeno (AINEs)',
+                category: 'Anti-inflamatório não esteroide',
+                thresholdLabel: '< 100 mg/kg: ligeiro. 100–400 mg/kg: moderado. > 400 mg/kg: grave.',
+                earlySymptoms: 'Náuseas, vómitos, dor epigástrica, sonolência, tonturas.',
+                lateSymptoms: 'Acidose metabólica, hipotensão, insuficiência renal aguda, coma.',
+                nursingApproach: ['Monitorizar sinais vitais.', 'Carvão ativado se < 1–2h e dose > 100–200 mg/kg.', 'Assegurar boa hidratação.'],
+                antidote: 'Sem antídoto específico. Tratamento de suporte.',
+                evaluate: (amount, unit, route, weightKg) => {
+                    if (route !== 'oral' || unit === 'ml' || !weightKg) {
+                        return { severity: 'INDETERMINADO', dosePerKgText: `${amount} ${unit}`, ciavAdvice: 'Insere peso (kg) e dose em mg por via oral.', summary: 'Dados incompletos para calcular mg/kg.', vigilance: ['Dor abdominal, vómitos.'], actions: ['Confirmar peso e dose em mg.'] };
+                    }
+                    const mgKg = amount / weightKg;
+                    if (mgKg < 100) return { severity: 'LIGEIRO', dosePerKgText: `${mgKg.toFixed(1)} mg/kg`, ciavAdvice: 'Não requer contacto urgente com CIAV (< 100 mg/kg).', summary: `Dose de ${mgKg.toFixed(1)} mg/kg: risco baixo.`, vigilance: ['Desconforto gástrico ligeiro.'], actions: ['Oferecer leite/alimento e vigiar.'] };
+                    if (mgKg <= 400) return { severity: 'MODERADO', dosePerKgText: `${mgKg.toFixed(1)} mg/kg`, ciavAdvice: 'Contactar CIAV (800 250 250) e vigiar 4–6h.', summary: `Dose entre 100–400 mg/kg (${mgKg.toFixed(1)} mg/kg).`, vigilance: ['Vómitos, sonolência, tonturas.'], actions: ['Monitorizar sinais vitais e hidratação.'] };
+                    return { severity: 'GRAVE', dosePerKgText: `${mgKg.toFixed(1)} mg/kg`, ciavAdvice: 'CONTACTAR IMEDIATAMENTE CIAV (800 250 250)!', summary: `Dose > 400 mg/kg (${mgKg.toFixed(1)} mg/kg): risco grave.`, vigilance: ['Depressão SNC, hipotensão, acidose.'], actions: ['Monitorização contínua, acesso venoso e gasimetria.'] };
+                }
+            },
+            {
+                id: 'ferro',
+                name: 'Ferro Elementar (Suplementos)',
+                category: 'Suplementos Minerais',
+                thresholdLabel: '< 20 mg/kg: assintomático. 20–60 mg/kg: moderado. > 60 mg/kg: grave.',
+                earlySymptoms: 'Vómitos, diarreia, dor abdominal intensa.',
+                lateSymptoms: 'Choque, acidose metabólica grave, hepatotoxicidade.',
+                nursingApproach: ['Calcular em FERRO ELEMENTAR.', 'Não usar carvão ativado (não adsorve ferro).'],
+                antidote: 'Deferoxamina (Desferal®) I.V.',
+                evaluate: (amount, unit, route, weightKg) => {
+                    if (unit === 'ml' || !weightKg || route !== 'oral') return { severity: 'MODERADO', dosePerKgText: `${amount} ${unit}`, ciavAdvice: 'Contactar CIAV (800 250 250) para conversão em ferro elementar.', summary: 'Calcular dose em ferro elementar/kg.', vigilance: ['Vómitos e dor abdominal.'], actions: ['Verificar rótulo da embalagem.'] };
+                    const mgKg = amount / weightKg;
+                    if (mgKg < 20) return { severity: 'LIGEIRO', dosePerKgText: `${mgKg.toFixed(1)} mg/kg`, ciavAdvice: 'Sem toxicidade esperada (< 20 mg/kg ferro elementar).', summary: `Dose de ${mgKg.toFixed(1)} mg/kg.`, vigilance: ['Desconforto gástrico ligeiro.'], actions: ['Confirmar cálculo em ferro elementar.'] };
+                    if (mgKg <= 60) return { severity: 'MODERADO', dosePerKgText: `${mgKg.toFixed(1)} mg/kg`, ciavAdvice: 'Contactar CIAV (800 250 250) e vigiar 6h.', summary: `Dose de ${mgKg.toFixed(1)} mg/kg: toxicidade GI.`, vigilance: ['Vómitos repetidos e diarreia.'], actions: ['Não dar carvão ativado; vigiar hidratação.'] };
+                    return { severity: 'GRAVE', dosePerKgText: `${mgKg.toFixed(1)} mg/kg`, ciavAdvice: 'EMERGÊNCIA — Contactar imediatamente CIAV (800 250 250)!', summary: `Dose > 60 mg/kg (${mgKg.toFixed(1)} mg/kg).`, vigilance: ['Hematemese, hipotensão, letargia.'], actions: ['Acesso venoso, gasimetria, ferro sérico às 4h e Deferoxamina.'] };
+                }
+            },
+            {
+                id: 'benzodiazepinas',
+                name: 'Benzodiazepinas (Diazepam, Lorazepam)',
+                category: 'Psicofármacos / Sedativos',
+                thresholdLabel: 'Qualquer ingestão acidental em criança requer vigilância.',
+                earlySymptoms: 'Sonolência, ataxia, disartria, hipotonia.',
+                lateSymptoms: 'Letargia profunda, depressão respiratória.',
+                nursingApproach: ['Avaliar ABCDE e oximetria contínua.', 'Evitar carvão ativado se sonolência.'],
+                antidote: 'Flumazenilo (Anexate®) — uso restrito.',
+                evaluate: (amount, unit, route, weightKg) => {
+                    const doseText = weightKg && unit === 'mg' ? `${amount} mg (${(amount/weightKg).toFixed(2)} mg/kg)` : `${amount} ${unit}`;
+                    return { severity: 'MODERADO', dosePerKgText: doseText, ciavAdvice: 'Contactar CIAV (800 250 250) para validar vigilância.', summary: 'Risco de sedação e depressão respiratória.', vigilance: ['Sonolência, ataxia, queda de SpO2.'], actions: ['Monitorizar SpO2 e nível de consciência durante 4–6h.'] };
+                }
+            },
+            {
+                id: 'lixivia',
+                name: 'Lixívia Doméstica / Cáusticos',
+                category: 'Produtos Domésticos',
+                thresholdLabel: 'Lixívia doméstica (< 5%): irritante ligeiro. Concentrados (> 10%) ou inalação: grave.',
+                earlySymptoms: 'Sialorreia, odinofagia, vómitos, tosse.',
+                lateSymptoms: 'Disfagia, estridor, lesão esofágica ou pneumonite.',
+                nursingApproach: ['NUNCA induzir vómito nem dar carvão ativado.', 'Não neutralizar.'],
+                antidote: 'Sem antídoto. Suporte e proteção da mucosa.',
+                evaluate: (amount, unit, route) => {
+                    if (route === 'inalacao') return { severity: 'GRAVE', dosePerKgText: 'Via Inalatória', ciavAdvice: 'CONTACTAR CIAV (800 250 250) — Risco respiratório!', summary: 'Inalação de vapores irritantes.', vigilance: ['Tosse, pieira, estridor, hipoxemia.'], actions: ['O2 suplementar e monitorização respiratória.'] };
+                    if (route === 'ocular' || route === 'cutanea') return { severity: 'MODERADO', dosePerKgText: `Via ${route}`, ciavAdvice: 'Lavar 15–20 min e contactar CIAV (800 250 250).', summary: 'Contacto direto requer irrigação imediata.', vigilance: ['Dor ocular, hiperemia, eritema.'], actions: ['Irrigar abundantemente com SF 0,9% durante 15–20 min.'] };
+                    return { severity: 'MODERADO', dosePerKgText: `Via Oral (${amount} ${unit})`, ciavAdvice: 'Contactar CIAV (800 250 250) confirmando rótulo.', summary: 'Excluir sinais de alarme orofaríngeos/esofágicos.', vigilance: ['Sialorreia, recusa alimentar, estridor.'], actions: ['Não induzir vómito; manter dieta zero até avaliação médica.'] };
+                }
+            }
+        ];
+
+        let state = {
+            activeTab: 'meds',
+            weightKg: null,
+            ageValue: null,
+            ageUnit: 'anos',
+            routeFilter: 'ALL',
+            expandedMeds: {},
+            prescribedDoses: {},
+            ciav: { toxinId: 'paracetamol', amount: '', unit: 'mg', route: 'oral' }
+        };
+
+        function switchMainTab(tab) {
+            state.activeTab = tab;
+            const tabMeds = document.getElementById('tab-meds');
+            const tabCiav = document.getElementById('tab-ciav');
+            const viewMeds = document.getElementById('view-meds');
+            const viewCiav = document.getElementById('view-ciav');
+
+            if (tab === 'meds') {
+                tabMeds.className = 'py-3 px-2 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border-b-2 border-clinical-600 text-clinical-700 bg-clinical-50/50 transition-colors';
+                tabCiav.className = 'py-3 px-2 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-colors';
+                viewMeds.classList.remove('hidden');
+                viewCiav.classList.add('hidden');
+            } else {
+                tabCiav.className = 'py-3 px-2 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border-b-2 border-red-600 text-red-700 bg-red-50/50 transition-colors';
+                tabMeds.className = 'py-3 px-2 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-colors';
+                viewCiav.classList.remove('hidden');
+                viewMeds.classList.add('hidden');
+            }
+        }
+
+        function handlePatientChange() {
+            const wInput = document.getElementById('patient-weight').value;
+            const aInput = document.getElementById('patient-age').value;
+            const aUnit = document.getElementById('patient-age-unit').value;
+
+            state.weightKg = wInput && parseFloat(wInput) > 0 ? parseFloat(wInput) : null;
+            state.ageValue = aInput && parseFloat(aInput) >= 0 ? parseFloat(aInput) : null;
+            state.ageUnit = aUnit;
+
+            const clearBtn = document.getElementById('btn-clear-patient');
+            if (state.weightKg || state.ageValue !== null) clearBtn.classList.remove('hidden');
+            else clearBtn.classList.add('hidden');
+
+            validatePatientSafety();
+            renderMeds();
+            renderCiavEvaluation();
+        }
+
+        function clearPatientData() {
+            document.getElementById('patient-weight').value = '';
+            document.getElementById('patient-age').value = '';
+            state.weightKg = null;
+            state.ageValue = null;
+            document.getElementById('btn-clear-patient').classList.add('hidden');
+            document.getElementById('patient-alert').classList.add('hidden');
+            renderMeds();
+            renderCiavEvaluation();
+        }
+
+        function validatePatientSafety() {
+            const alertBox = document.getElementById('patient-alert');
+            const alertText = document.getElementById('patient-alert-text');
+            let warnings = [];
+            if (state.weightKg && state.weightKg > 80) warnings.push(`Peso introduzido (${state.weightKg} kg) elevado para pediatria: verificar tetos máximos de adulto.`);
+            if (state.ageValue !== null && state.ageUnit === 'meses' && state.ageValue < 1) warnings.push('Recém-nascido (< 1 mês): verificar protocolos específicos de neonatologia.');
+            if (state.ageValue !== null && state.ageUnit === 'meses' && state.ageValue <= 12 && state.weightKg && state.weightKg > 18) warnings.push(`Atenção: Peso (${state.weightKg} kg) aparentemente elevado para ${state.ageValue} meses.`);
+
+            if (warnings.length > 0) {
+                alertText.textContent = warnings.join(' ');
+                alertBox.classList.remove('hidden');
+            } else {
+                alertBox.classList.add('hidden');
+            }
+        }
+
+        function setRouteFilter(route) {
+            state.routeFilter = route;
+            document.querySelectorAll('.route-btn').forEach(btn => {
+                btn.className = btn.dataset.route === route
+                    ? 'route-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-clinical-700 text-white shrink-0 transition-colors'
+                    : 'route-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 shrink-0 transition-colors';
+            });
+            renderMeds();
+        }
+
+        function toggleMedCard(id) {
+            state.expandedMeds[id] = !state.expandedMeds[id];
+            renderMeds();
+        }
+
+        function handlePrescribedDoseChange(medId, value) {
+            state.prescribedDoses[medId] = value;
+            const outputContainer = document.getElementById(`prep-output-${medId}`);
+            if (outputContainer) {
+                const med = MEDICATIONS.find(m => m.id === medId);
+                outputContainer.innerHTML = buildPreparationOutputHtml(med);
+            }
+        }
+
+        function renderMeds() {
+            const container = document.getElementById('meds-container');
+            const query = document.getElementById('med-search').value.trim().toLowerCase();
+            const clearSearchBtn = document.getElementById('clear-med-search');
+            
+            if (query.length > 0) clearSearchBtn.classList.remove('hidden');
+            else clearSearchBtn.classList.add('hidden');
+
+            const filtered = MEDICATIONS.filter(med => {
+                const matchesRoute = state.routeFilter === 'ALL' || med.routes.includes(state.routeFilter);
+                const matchesText = !query || med.genericName.toLowerCase().includes(query) || med.brandNames.some(b => b.toLowerCase().includes(query));
+                return matchesRoute && matchesText;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-2xl p-8 text-center border border-slate-200">
+                        <i class="fa-solid fa-prescription-bottle-medical text-3xl text-slate-300 mb-2"></i>
+                        <p class="text-sm font-bold text-slate-700">Nenhum medicamento encontrado</p>
+                        <p class="text-xs text-slate-500 mt-1">Tenta pesquisar por outro nome genérico, comercial ou limpa o filtro de via.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(med => {
+                const isExpanded = !!state.expandedMeds[med.id];
+                const prescribedVal = state.prescribedDoses[med.id] || '';
+                return `
+                <article class="bg-white rounded-2xl shadow-sm border ${med.criticalAlert ? 'border-red-300' : 'border-slate-200'} overflow-hidden transition-all">
+                    <div onclick="toggleMedCard('${med.id}')" class="p-4 cursor-pointer hover:bg-slate-50/80 transition-colors select-none">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <h3 class="font-extrabold text-base sm:text-lg text-clinical-900 leading-tight">${med.genericName}</h3>
+                                    ${med.routeBadges.map(badge => `<span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-clinical-100 text-clinical-800 border border-clinical-200">${badge}</span>`).join('')}
+                                </div>
+                                <p class="text-xs font-semibold text-slate-700"><i class="fa-solid fa-vial text-clinical-600 mr-1"></i>${med.presentation}</p>
+                                <p class="text-[11px] text-slate-500 leading-relaxed"><span class="font-semibold text-slate-600">Marcas:</span> ${med.brandNames.join(', ')}</p>
+                            </div>
+                            <button type="button" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid ${isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'} text-xs"></i>
+                            </button>
+                        </div>
+                        ${med.criticalAlert ? `
+                            <div class="mt-3 px-3 py-2 rounded-xl bg-red-600 text-white text-xs font-extrabold flex items-center gap-2 shadow-sm">
+                                <i class="fa-solid fa-ban text-sm"></i>
+                                <span>${med.criticalAlert}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    ${isExpanded ? `
+                        <div class="border-t border-slate-200 p-4 space-y-4 bg-slate-50/40 details-enter">
+                            <div class="bg-clinical-50 border-2 border-clinical-400 rounded-xl p-3.5 shadow-sm space-y-3">
+                                <div>
+                                    <span class="text-xs font-extrabold uppercase tracking-wider text-clinical-900 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-syringe text-clinical-700"></i>Preparação da Dose Prescrita
+                                    </span>
+                                    <p class="text-[11px] text-clinical-800 mt-0.5">Introduz a dose prescrita pelo médico para calcular volume a aspirar, diluição e tempo.</p>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-end">
+                                    <div class="sm:col-span-6">
+                                        <label for="prescribed-${med.id}" class="block text-[11px] font-extrabold text-clinical-950 mb-1">Dose Prescrita pelo Médico (mg)</label>
+                                        <div class="relative">
+                                            <input type="number" id="prescribed-${med.id}" step="any" min="0" value="${prescribedVal}" placeholder="Ex: 100" oninput="handlePrescribedDoseChange('${med.id}', this.value)"
+                                                class="w-full pl-3 pr-11 py-2.5 bg-white border-2 border-clinical-600 rounded-xl text-base font-extrabold text-slate-900 focus:outline-none focus:ring-2 focus:ring-clinical-700">
+                                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-extrabold text-clinical-800">mg</span>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-6 text-[11px] text-clinical-900 bg-white/80 p-2.5 rounded-xl border border-clinical-200">
+                                        <span class="font-bold block text-clinical-800"><i class="fa-solid fa-circle-info mr-1"></i>Nota de Referência:</span>
+                                        <span>${med.adminHelper.referenceNote}</span>
+                                    </div>
+                                </div>
+                                <div id="prep-output-${med.id}">${buildPreparationOutputHtml(med)}</div>
+                            </div>
+
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200">
+                                <h4 class="text-xs font-extrabold uppercase tracking-wider text-clinical-800 mb-1.5 flex items-center gap-1.5"><i class="fa-solid fa-flask text-clinical-600"></i>Reconstituição</h4>
+                                <p class="text-sm font-medium text-slate-800">${med.reconstitution}</p>
+                            </div>
+
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200 space-y-3">
+                                <h4 class="text-xs font-extrabold uppercase tracking-wider text-clinical-800 flex items-center gap-1.5"><i class="fa-solid fa-droplet text-clinical-600"></i>Diluição / Administração (Guia do Serviço)</h4>
+                                <div class="space-y-3">
+                                    ${med.dilutionAndAdmin.map(item => `
+                                        <div class="pl-3 border-l-2 border-clinical-500 space-y-1">
+                                            <span class="inline-block text-xs font-extrabold text-clinical-900 bg-clinical-50 px-2 py-0.5 rounded">${item.via}</span>
+                                            <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">${item.text}</p>
+                                            ${item.warning ? `<p class="text-xs font-bold text-red-700 bg-red-50 border border-red-200 px-2.5 py-1.5 rounded-lg mt-1.5"><i class="fa-solid fa-clock mr-1"></i>${item.warning}</p>` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-3.5 rounded-xl border border-slate-200 space-y-2">
+                                <h4 class="text-xs font-extrabold uppercase tracking-wider text-clinical-800 flex items-center gap-1.5"><i class="fa-solid fa-clock-rotate-left text-clinical-600"></i>Estabilidade após Diluição / Reconstituição</h4>
+                                <div class="divide-y divide-slate-100">
+                                    ${med.stability.map(st => `<div class="py-1.5 first:pt-0 last:pb-0 text-xs sm:text-sm"><span class="font-bold text-slate-700">${st.label}:</span> <span class="text-slate-800">${st.text}</span></div>`).join('')}
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="bg-white p-3.5 rounded-xl border border-slate-200 space-y-1.5">
+                                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-clipboard-check text-slate-500"></i>Observações / Incompatibilidades</h4>
+                                    <ul class="space-y-1 text-xs text-slate-700 leading-relaxed">${med.observations.map(obs => `<li>• ${obs}</li>`).join('')}</ul>
+                                </div>
+                                <div class="bg-amber-50/60 p-3.5 rounded-xl border border-amber-200 space-y-1.5">
+                                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-amber-900 flex items-center gap-1.5"><i class="fa-solid fa-heart-pulse text-amber-600"></i>Vigilância de Enfermagem</h4>
+                                    <ul class="space-y-1 text-xs text-amber-950 leading-relaxed">${med.sideEffects.map(se => `<li>• ${se}</li>`).join('')}</ul>
+                                </div>
+                            </div>
+                        </div>
+                    ` : ''}
+                </article>
+                `;
+            }).join('');
+        }
+
+        function buildPreparationOutputHtml(med) {
+            const rawVal = state.prescribedDoses[med.id];
+            const doseMg = rawVal && parseFloat(rawVal) > 0 ? parseFloat(rawVal) : null;
+
+            if (!doseMg) {
+                return `
+                    <div class="bg-white/70 border border-dashed border-clinical-300 rounded-xl p-3 text-xs text-clinical-800 flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-up text-clinical-600"></i>
+                        <span>Preenche a <strong>dose prescrita (mg)</strong> acima para veres o volume exato a aspirar${med.concentrationMgMl ? ` (${med.concentrationMgMl} mg/ml)` : ''}, diluição e tempo de administração.</span>
+                    </div>
+                `;
+            }
+
+            const hasNumericConc = !!med.concentrationMgMl;
+            const volumeMl = hasNumericConc ? (doseMg / med.concentrationMgMl) : null;
+            const evalData = med.adminHelper.evaluatePrescription(doseMg, state.weightKg);
+            const mgPerKgText = state.weightKg ? `${(doseMg / state.weightKg).toFixed(2).replace(/\.00$/, '')} mg/kg` : null;
+
+            return `
+                <div class="space-y-2.5 pt-1">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <div class="bg-clinical-700 text-white p-3 rounded-xl shadow-inner">
+                            <span class="block text-[10px] font-bold uppercase text-clinical-200">1. Volume a Aspirar</span>
+                            <span class="text-lg sm:text-xl font-extrabold">${hasNumericConc ? `${volumeMl.toFixed(2).replace(/\.00$/, '')} ml` : 'Ver reconstituição'}</span>
+                            <span class="block text-[10px] text-clinical-200 mt-0.5">${med.presentation}</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-clinical-200">
+                            <span class="block text-[10px] font-bold uppercase text-slate-400">2. Diluição Recomendada</span>
+                            <span class="text-xs font-extrabold text-slate-900 leading-snug block mt-0.5">${evalData.dilutionText}</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-clinical-200">
+                            <span class="block text-[10px] font-bold uppercase text-slate-400">3. Tempo de Administração</span>
+                            <span class="text-xs font-extrabold text-red-700 leading-snug block mt-0.5">${evalData.timeText}</span>
+                            ${mgPerKgText ? `<span class="block text-[10px] font-semibold text-slate-500 mt-0.5">Equivale a ${mgPerKgText}</span>` : ''}
+                        </div>
+                    </div>
+                    ${evalData.extraAdminNote ? `<div class="bg-white p-2.5 rounded-xl border border-clinical-200 text-xs text-slate-800"><i class="fa-solid fa-flask text-clinical-600 mr-1"></i>${evalData.extraAdminNote}</div>` : ''}
+                    ${evalData.safetyAlert ? `
+                        <div class="bg-amber-50 border border-amber-300 text-amber-950 p-2.5 rounded-xl text-xs flex items-start gap-2">
+                            <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5 shrink-0"></i>
+                            <div><strong class="font-extrabold">Alerta de Segurança:</strong> <span>${evalData.safetyAlert}</span></div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function handleCiavInputChange() {
+            state.ciav.toxinId = document.getElementById('ciav-toxin-select').value;
+            state.ciav.amount = document.getElementById('ciav-amount').value;
+            state.ciav.unit = document.getElementById('ciav-unit').value;
+            state.ciav.route = document.getElementById('ciav-route').value;
+            renderCiavEvaluation();
+        }
+
+        function loadParacetamolExample() {
+            document.getElementById('patient-weight').value = '25';
+            document.getElementById('patient-age').value = '7';
+            document.getElementById('patient-age-unit').value = 'anos';
+            document.getElementById('ciav-toxin-select').value = 'paracetamol';
+            document.getElementById('ciav-amount').value = '750';
+            document.getElementById('ciav-unit').value = 'mg';
+            document.getElementById('ciav-route').value = 'oral';
+            state.ciav = { toxinId: 'paracetamol', amount: '750', unit: 'mg', route: 'oral' };
+            handlePatientChange();
+        }
+
+        function renderCiavEvaluation() {
+            const container = document.getElementById('ciav-evaluation-result');
+            const toxin = TOXINS.find(t => t.id === state.ciav.toxinId) || TOXINS[0];
+            const amountVal = state.ciav.amount && parseFloat(state.ciav.amount) > 0 ? parseFloat(state.ciav.amount) : null;
+
+            if (!amountVal && state.ciav.route === 'oral') {
+                container.innerHTML = `<div class="bg-slate-50 border border-dashed border-slate-300 rounded-xl p-3.5 text-xs text-slate-600"><span>Introduz a <strong>quantidade ingerida/exposta</strong> (e o peso da criança no topo) para avaliar o grau de gravidade.</span></div>`;
+                return;
+            }
+
+            const result = toxin.evaluate(amountVal || 0, state.ciav.unit, state.ciav.route, state.weightKg, state.ageValue, state.ageUnit);
+            const badgeStyles = {
+                'LIGEIRO': { wrapper: 'bg-emerald-50 border-2 border-emerald-400', header: 'bg-emerald-600 text-white', icon: 'fa-circle-check', label: 'GRAU LIGEIRO / SEM TOXICIDADE AGUDA ESPERADA' },
+                'MODERADO': { wrapper: 'bg-amber-50 border-2 border-amber-400', header: 'bg-amber-500 text-slate-950', icon: 'fa-triangle-exclamation', label: 'GRAU MODERADO / VIGILÂNCIA CLÍNICA' },
+                'GRAVE': { wrapper: 'bg-red-50 border-2 border-red-500', header: 'bg-red-600 text-white', icon: 'fa-skull-crossbones', label: 'GRAU GRAVE / RISCO TÓXICO ELEVADO' },
+                'INDETERMINADO': { wrapper: 'bg-slate-50 border-2 border-slate-300', header: 'bg-slate-700 text-white', icon: 'fa-circle-question', label: 'DADOS INCOMPLETOS PARA ESTRATIFICAR' }
+            };
+            const style = badgeStyles[result.severity] || badgeStyles['INDETERMINADO'];
+
+            container.innerHTML = `
+                <div class="${style.wrapper} rounded-xl overflow-hidden shadow-sm details-enter">
+                    <div class="${style.header} px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2 font-extrabold text-xs sm:text-sm"><i class="fa-solid ${style.icon}"></i><span>${style.label}</span></div>
+                        <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-black/20">${result.dosePerKgText}</span>
+                    </div>
+                    <div class="p-3.5 space-y-3 text-xs">
+                        <p class="font-bold text-slate-900 text-xs sm:text-sm leading-snug">${result.summary}</p>
+                        <div class="p-2.5 rounded-xl bg-white border border-slate-200 flex items-start justify-between gap-2">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-phone-volume mt-0.5 ${result.severity === 'GRAVE' ? 'text-red-600' : result.severity === 'LIGEIRO' ? 'text-emerald-600' : 'text-amber-600'}"></i>
+                                <div>
+                                    <span class="font-extrabold uppercase text-[10px] text-slate-500 block">Orientação Contacto CIAV</span>
+                                    <span class="font-semibold text-slate-800">${result.ciavAdvice}</span>
+                                </div>
+                            </div>
+                            ${result.severity !== 'LIGEIRO' ? `<a href="tel:800250250" class="bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] px-2.5 py-1.5 rounded-lg shrink-0">Ligar CIAV</a>` : ''}
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <div class="bg-white/90 p-2.5 rounded-xl border border-slate-200">
+                                <span class="font-extrabold uppercase text-[10px] text-slate-600 block mb-1"><i class="fa-solid fa-eye text-clinical-600 mr-1"></i>Sintomas a Vigiar</span>
+                                <ul class="space-y-1 text-slate-800">${result.vigilance.map(v => `<li>• ${v}</li>`).join('')}</ul>
+                            </div>
+                            <div class="bg-white/90 p-2.5 rounded-xl border border-slate-200">
+                                <span class="font-extrabold uppercase text-[10px] text-slate-600 block mb-1"><i class="fa-solid fa-user-nurse text-clinical-600 mr-1"></i>Abordagem Imediata</span>
+                                <ul class="space-y-1 text-slate-800">${result.actions.map(a => `<li>• ${a}</li>`).join('')}</ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderToxins() {
+            const container = document.getElementById('toxins-container');
+            const query = document.getElementById('toxin-search').value.trim().toLowerCase();
+            const filtered = TOXINS.filter(t => !query || t.name.toLowerCase().includes(query) || t.category.toLowerCase().includes(query));
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="bg-white rounded-2xl p-6 text-center border border-slate-200"><p class="text-sm font-bold text-slate-700">Agente não encontrado</p><p class="text-xs text-slate-500 mt-1">Contacta diretamente o CIAV: <strong>800 250 250</strong>.</p></div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(toxin => `
+                <details class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden group">
+                    <summary class="p-3.5 bg-slate-50 hover:bg-slate-100/80 cursor-pointer flex items-center justify-between gap-2 select-none">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-red-600">${toxin.category}</span>
+                            <h3 class="font-extrabold text-sm sm:text-base text-slate-900 leading-tight">${toxin.name}</h3>
+                        </div>
+                        <span class="w-7 h-7 rounded-full bg-white border border-slate-200 text-slate-500 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+                        </span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 space-y-3 text-xs">
+                        <div class="bg-red-50 border border-red-200 p-3 rounded-xl">
+                            <span class="block text-[11px] font-extrabold uppercase text-red-900 mb-1"><i class="fa-solid fa-scale-unbalanced mr-1"></i>Limiares de Referência</span>
+                            <p class="text-red-950 font-medium">${toxin.thresholdLabel}</p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="block text-[11px] font-extrabold uppercase text-slate-700 mb-1">Fase Precoce</span>
+                                <p class="text-slate-700 leading-relaxed">${toxin.earlySymptoms}</p>
+                            </div>
+                            <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200">
+                                <span class="block text-[11px] font-extrabold uppercase text-amber-900 mb-1">Fase Tardia / Gravidade</span>
+                                <p class="text-amber-950 leading-relaxed">${toxin.lateSymptoms}</p>
+                            </div>
+                        </div>
+                        <div class="bg-clinical-50/60 border border-clinical-200 p-3 rounded-xl">
+                            <span class="block text-[11px] font-extrabold uppercase text-clinical-900 mb-1.5"><i class="fa-solid fa-user-nurse text-clinical-700 mr-1"></i>Abordagem Inicial de Enfermagem</span>
+                            <ul class="space-y-1 text-slate-800 leading-relaxed">${toxin.nursingApproach.map(step => `<li>• ${step}</li>`).join('')}</ul>
+                        </div>
+                        <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl flex items-start gap-2">
+                            <i class="fa-solid fa-kit-medical text-emerald-700 mt-0.5"></i>
+                            <div class="text-emerald-950">
+                                <strong class="uppercase text-[11px] block text-emerald-900">Antídoto / Terapêutica Específica:</strong>
+                                <span>${toxin.antidote}</span>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMedicationsFromGoogleSheets();
+            renderCiavEvaluation();
+            renderToxins();
+        });
+    </script>
+</body>
+</html>
